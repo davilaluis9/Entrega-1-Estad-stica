@@ -15,32 +15,41 @@ Variables independientes:
 - Responsable: Athina Perez Figueroa
 - Variable 1: Desastres naturales
      * Base de datos: EM-DAT Public (desastres naturales)
+     * Enlace: https://public.emdat.be/data
      * Justificación: La migración puede verse influenciada por la recurrencia de desastres naturales en el país que se reside debido a la posibilidad de que la              población se vea afectada de manera física (lesiones) o al sufrir la pérdida de sus bienes. 
 - Variable 2: Servicios de higiene
      * Base de datos: UNICEF (servicios de salud)
+     * Enlace: https://data.unicef.org/resources/dataset/drinking-water-sanitation-hygiene-database/
      * Justificación: Según UNICEF, la importancia de los servicios básicos de higiene radica en la reducción y prevención de enfermedades infecciosas. La calidad de          estos servicios a nivel nacional podría impactar en la decisión de permanecer o migrar del país de residencia.
 - Variable 3: Legitimidad del Estado
      * Base de datos: Fragile States Index (legitimidad estatal 2021)
+     * Enlace: https://fragilestatesindex.org/excel/
      * Justificación: Cuando un Estado pierde legitimidad, la confianza de la población desaparece. Por ende, las personas podrían preferir migrar a otros países en          los que el Estado sea verdaderamente reconocido como una autoridad.
 
 - Responsable: Luis Dávila Luján
 - Variable 4: Desigualdad económica
      * Base de datos: Fragile States Index (desigualdad economica)
+     * Enlace: https://fragilestatesindex.org/excel/
      * Justificación: La percepción de una desigualdad económica generalizada en la sociedad que afecte la calidad de vida de las personas debido a la injusta                repartición de ingresos puede llevar a que los ciudadanos traten de migrar. Así pues, se vería en otros países una posible mejora en su adquisición económica al        haber una menor desigualdad económica. 
 - Variable 5: Gasto público destinado a la educación
      * Base de datos: UNICEF (gdp-educacion)
+     * Enlace: https://data.unicef.org/resources/data_explorer/unicef_f/?                                           ag=UNICEF&df=GLOBAL_DATAFLOW&ver=1.0&dq=.ECON_GVT_EDU_EXP_PTGDP..&startPeriod=2015&endPeriod=2021
      * Justificación: Que un país gaste determinada cantidad de su presupuesto nacional destinado al servicio educativo puede influir en la decisión de un ciudadano          para migrar. 
 - Variable 6: Índice de criminalidad
      * Base de datos: Global Organized Crime Index (indice de criminalidad)
+     * Enlace: https://globalinitiative.net/analysis/ocindex-2021/
      * Justificación: Es conocido que la criminalidad en los países es una constante que afecta recurrentemente a la seguridad ciudadana. Por ende, los ciudadanos de          un país al ver ello pueden llegar a la conclusión de migrar en aras de encontrar mejores lugares en términos de seguridad. 
 
 - Responsable: Alexandra Porras
 - Variable 7: Percepción de la corrupción
      * Base de datos: Transparency international (CPI_TI)
+     * Enlace: https://www.transparency.org/en/cpi/2021/index/bra
      * Justificación: Si la población percibe que los fondos públicos están siendo apropiados por los funcionarios estatales para fines privados o se abusa de forma          sistematizada de los mismos, no hay un sistema de rendición de cuentas, el poder judicial no cuenta con poder real para investigar o sancionar estas acciones,          es común el empleo de sobornos, entre otros, es probable que aumente la desconfianza de los ciudadanos hacia las instituciones estatales y el rechazo hacia las        mismas. Aquello puede generar que muchas personas consideren migrar a países en los cuales perciban un menor grado de corrupción en las instituciones públicas.
 - Variable 8: Crecimiento del PBI per cápita
      * Base de datos: Banco Mundial (PBIpercap)
+     * Enlace: https://datos.bancomundial.org/indicator/NY.GDP.PCAP.KD.ZG
      * Justificación: El PBI per cápita es uno de los indicadores por excelencia de la actividad económica de un país: un incremento en él significa un aumento en las        transacciones del mercado, reducción del desempleo y un aumento de la capacidad adquisitiva de los ciudadanos, lo cual contribuye al movimiento económico y,            eventualmente, al aumento de los fondos públicos. En tanto las personas buscan un entorno más favorable para su desarrollo, puede que busquen migrar dependiendo        del crecimiento o contracción del PBI per cápita en su país como señal de las oportunidades económicas en él.
 - Variable 9: Desempleo
      * Base de datos: Banco Mundial (Desempleo_BM)
+     * Enlace: https://datos.bancomundial.org/indicator/SL.UEM.TOTL.ZS
      * Justificación: 
