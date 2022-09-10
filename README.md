@@ -52,4 +52,4 @@ Variables independientes:
 - Variable 9: Desempleo
      * Base de datos: Banco Mundial (Desempleo_BM)
      * Enlace: https://datos.bancomundial.org/indicator/SL.UEM.TOTL.ZS
-     * Justificación: 
+     * Justificación: Altos niveles de desempleo en el país de origen pueden funcionar como incentivos para la migración en tanto implica pérdidas económicas para los        ciudadanos. Asimismo, siguiendo a Sen, el desempleo, además del impacto económico negativo, afecta a nivel personal a los ciudadanos en su sentido de                  autorrealización, importante para el desarrollo humano. Por lo mismo, a mayores niveles de desempleo, podría haber una mayor insatisfacción que desemboque en un        incremento de la migración en la búsqueda de oportunidades laborales.
