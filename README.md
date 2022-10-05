@@ -42,14 +42,14 @@ Variables independientes:
 
 - Responsable: Alexandra Porras
 - Variable 7: Percepción de la corrupción
-     * Base de datos: Transparency international (CPI_TI)
+     * Base de datos: Transparency international (IndicePercepCorru)
      * Enlace: https://www.transparency.org/en/cpi/2021/index/bra
      * Justificación: Si la población percibe que los fondos públicos están siendo apropiados por los funcionarios estatales para fines privados o se abusa de forma          sistematizada de los mismos, no hay un sistema de rendición de cuentas, el poder judicial no cuenta con poder real para investigar o sancionar estas acciones,          es común el empleo de sobornos, entre otros, es probable que aumente la desconfianza de los ciudadanos hacia las instituciones estatales y el rechazo hacia las        mismas. Aquello puede generar que muchas personas consideren migrar a países en los cuales perciban un menor grado de corrupción en las instituciones públicas.
 - Variable 8: Crecimiento del PBI per cápita
-     * Base de datos: Banco Mundial (PBIpercap)
+     * Base de datos: Banco Mundial (CreciPIB)
      * Enlace: https://datos.bancomundial.org/indicator/NY.GDP.PCAP.KD.ZG
      * Justificación: El PBI per cápita es uno de los indicadores por excelencia de la actividad económica de un país: un incremento en él significa un aumento en las        transacciones del mercado, reducción del desempleo y un aumento de la capacidad adquisitiva de los ciudadanos, lo cual contribuye al movimiento económico y,            eventualmente, al aumento de los fondos públicos. En tanto las personas buscan un entorno más favorable para su desarrollo, puede que busquen migrar dependiendo        del crecimiento o contracción del PBI per cápita en su país como señal de las oportunidades económicas en él.
 - Variable 9: Desempleo
-     * Base de datos: Banco Mundial (Desempleo_BM)
+     * Base de datos: Banco Mundial (Desempleo)
      * Enlace: https://datos.bancomundial.org/indicator/SL.UEM.TOTL.ZS
      * Justificación: Altos niveles de desempleo en el país de origen pueden funcionar como incentivos para la migración en tanto implica pérdidas económicas para los        ciudadanos. Asimismo, siguiendo a Sen, el desempleo, además del impacto económico negativo, afecta a nivel personal a los ciudadanos en su sentido de                  autorrealización, importante para el desarrollo humano. Por lo mismo, a mayores niveles de desempleo, podría haber una mayor insatisfacción que desemboque en un        incremento de la migración en la búsqueda de oportunidades laborales.
