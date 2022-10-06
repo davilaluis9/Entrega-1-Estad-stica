@@ -1,4 +1,4 @@
-# Entrega-1-Estad-stica
+# Entrega-1-Estadistica
 
 Integrantes del grupo: 
 1. Luis Dávila Luján (20195780)
@@ -10,7 +10,7 @@ Tema: Migración a nivel mundial
 Explicación del tema: Los ciudadanos de un país se ven constantemente influenciados por el entorno en el que viven. Por ende, siempre buscarán aquel lugar donde puedan percibir una mayor seguridad u oportunidades para su desarrollo y el de sus seres queridos. Especialmente, resulta común el poder pensar que personas de países subdesarrollados o en vías de desarrollo sean los que se encuentren más motivados a migrar por las condiciones estructurales e institucionales de sus países. Como resultado de estas ideas, será fundamental en este trabajo explicar si lo mencionado, en primer lugar, resulta verídico. En segundo lugar, debe resaltarse si ciertas variables, desde el índice de la percepción de corrupción hasta la desigualdad económica, resultan fundamentales para explicar el fenómeno. Finalmente, encontrando variables que sí afecten a este fenómeno, poder determinar cuáles de ellas son las estadísticamente  más significativas en el modelo a trabajar. Con ello, se busca dar mayores luces respecto a esta problemática para, a partir de las variables examinadas, pensar qué estrategias de acción podrían implementar los países, desde su propia particularidad nacional, para evitar la pérdida de ciudadanos y posible capital humano.
 
 Variable dependiente: Cantidad de personas que migran de su país de origen
-     * Base de datos: CIA (migration 2022)
+     * Base de datos: CIA (Migracion2022)
 Variables independientes: 
 - Responsable: Athina Perez Figueroa
 - Variable 1: Desastres naturales
