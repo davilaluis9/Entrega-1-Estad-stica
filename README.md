@@ -28,15 +28,15 @@ Variables independientes:
 
 - Responsable: Luis Dávila Luján
 - Variable 4: Desigualdad económica
-     * Base de datos: Fragile States Index (desigualdad economica)
+     * Base de datos: Fragile States Index (desieco)
      * Enlace: https://fragilestatesindex.org/excel/
      * Justificación: La percepción de una desigualdad económica generalizada en la sociedad que afecte la calidad de vida de las personas debido a la injusta                repartición de ingresos puede llevar a que los ciudadanos traten de migrar. Así pues, se vería en otros países una posible mejora en su adquisición económica al        haber una menor desigualdad económica. 
 - Variable 5: Gasto público destinado a la educación
-     * Base de datos: UNICEF (gdp-educacion)
+     * Base de datos: UNICEF (gdpeduca)
      * Enlace: https://data.unicef.org/resources/data_explorer/unicef_f/?                                           ag=UNICEF&df=GLOBAL_DATAFLOW&ver=1.0&dq=.ECON_GVT_EDU_EXP_PTGDP..&startPeriod=2015&endPeriod=2021
      * Justificación: Que un país gaste determinada cantidad de su presupuesto nacional destinado al servicio educativo puede influir en la decisión de un ciudadano          para migrar. 
 - Variable 6: Índice de criminalidad
-     * Base de datos: Global Organized Crime Index (indice de criminalidad)
+     * Base de datos: Global Organized Crime Index (criminalidad)
      * Enlace: https://globalinitiative.net/analysis/ocindex-2021/
      * Justificación: Es conocido que la criminalidad en los países es una constante que afecta recurrentemente a la seguridad ciudadana. Por ende, los ciudadanos de          un país al ver ello pueden llegar a la conclusión de migrar en aras de encontrar mejores lugares en términos de seguridad. 
 
