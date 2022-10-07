@@ -18,10 +18,10 @@ Variables independientes:
      * Enlace: 
      * Justificación: La migración puede verse influenciada por las amenazas ecológicas en el país que se reside debido a la posibilidad de que la población se vea            afectada de manera física al sufrir la pérdida de sus bienes y el deterioro de su salud. La variable es un índice del 1 al cinco compuesta por los indicadores          de riesgo alimentario, el riesgo hídrico, el rápido crecimiento de la población, las anomalías de temperatura y los desastres naturales.
 
-- Variable 2: Índice de paz
+- Variable 2: Índice de deterioro de paz
      * Base de datos: Institue for Economic and Peace (paz mundial)
      * Enlace: https://www.visionofhumanity.org/public-release-data/
-     * Justificación:La población civil suele ser afectada durante los conflictos entre países. Al sentirse desprotegida y considerar que su vida peligra, las personas        podrían considerar como una opción a la migración. El índice va 1 al 5 y se encuentra compuesto por indicadores de seguridad y protección, militarización y            conflictos en curso.
+     * Justificación:La población civil suele ser afectada durante los conflictos entre países. Al sentirse desprotegida y considerar que su vida peligra, las personas        podrían considerar como una opción a la migración. El índice mide el deterioro de la paz al interior de los países a través de los años y se encuentra compuesto        por indicadores de seguridad y protección, militarización y conflictos en curso.
      
 - Variable 3: Legitimidad del Estado
      * Base de datos: Fragile States Index (legitimidad estatal 2021)
