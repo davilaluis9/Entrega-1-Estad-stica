@@ -231,12 +231,13 @@ names(dataFINAL)
 ```
 
 ```{r}
-dataFINAL = select(dataFINAL, ISO, pais, Migracion_2022, Criminalidad, PCorrupcion_2021, Desempleo_2021, PBI_2020, 'E2: Economic Inequality', EmisionesCO2, LegitimidadEstatal, Paz, Catastrofe)
+dataFINAL = select(dataFINAL, ISO, pais, Migracion_2022, Criminalidad, PCorrupcion_2021, Desempleo_2021, PBI_2020, 'E2: Economic Inequality', EmisionesCO2, Paz, Catastrofe)
 ```
+
 
 ```{r}
 library(rio)
-export(dataFINAL,"DataFINAL.csv")
+export(dataFINAL,"DataFINAL2.csv")
 ```
 
 
