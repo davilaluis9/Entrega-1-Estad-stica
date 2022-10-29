@@ -371,7 +371,7 @@ pre code {
 
 
 <pre class="r"><code>library(rio)
-regresionLuis = import(&quot;https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL.csv&quot;)</code></pre>
+regresionLuis = import(&quot;https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv&quot;)</code></pre>
 <pre class="r"><code>modeloL&lt;-lm(regresionLuis$Migracion_2022~ regresionLuis$EmisionesCO2 + regresionLuis$`E2: Economic Inequality` + regresionLuis$Criminalidad, regresionLuis)
 summary(modeloL)</code></pre>
 <pre><code>## 
@@ -394,7 +394,7 @@ summary(modeloL)</code></pre>
 ## Residual standard error: 5.016 on 151 degrees of freedom
 ## Multiple R-squared:  0.01996,    Adjusted R-squared:  0.0004935 
 ## F-statistic: 1.025 on 3 and 151 DF,  p-value: 0.3832</code></pre>
-<p>#Viendo los resultados, las variables analizadas no resultan
+<p>Viendo los resultados, las variables analizadas no resultan
 significativas. En realidad, el modelo en sí no puede explicar la
 dependiente en este caso. Viendo el R ajustad, nos damos cuenta que este
 modelo solo explica un 0.05% del caso analizado. Todas las variables en
@@ -403,9 +403,9 @@ más contaminación por CO2, más migración de la población. Mientras más
 criminalidad, más migración. En el caso de la desigualdad económica, se
 encuentra que existe una relación inversamente proporcional: mientras
 más desigualdad, menos migración.</p>
-<p>##Regresión Athina</p>
-<pre class="r"><code>regresionAth = import(&quot;https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL.csv&quot;)</code></pre>
-<pre class="r"><code>modeloAth = formula(Migracion_2022 ~ Catastrofe + LegitimidadEstatal + Paz)
+<p>Regresión Athina</p>
+<pre class="r"><code>regresionAth = import(&quot;https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv&quot;)</code></pre>
+<pre class="r"><code>modeloAth = formula(Migracion_2022 ~ Catastrofe + Paz)
 r1 = lm(modeloAth, data = regresionAth)
 summary(r1)</code></pre>
 <pre><code>## 
@@ -414,36 +414,32 @@ summary(r1)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -10.505  -2.288  -0.195   1.002  39.119 
+## -10.610  -2.215  -0.444   1.017  39.200 
 ## 
 ## Coefficients:
-##                    Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)          0.9869     2.5596   0.386   0.7004  
-## Catastrofe          -0.8501     0.4913  -1.730   0.0856 .
-## LegitimidadEstatal  -0.1764     0.2084  -0.847   0.3984  
-## Paz                  1.9688     1.0967   1.795   0.0746 .
+##             Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   1.8315     2.3551   0.778   0.4380  
+## Catastrofe   -0.9830     0.4651  -2.113   0.0362 *
+## Paz           1.3542     0.8214   1.649   0.1013  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 4.964 on 151 degrees of freedom
-## Multiple R-squared:  0.04027,    Adjusted R-squared:  0.0212 
-## F-statistic: 2.112 on 3 and 151 DF,  p-value: 0.1011</code></pre>
-<p>#De acuerdo al summary, vemos que el modelo, al tener un p-valor
-mayor al 0.05, no es significativo al momento de explicar la variable
+## Residual standard error: 4.959 on 152 degrees of freedom
+## Multiple R-squared:  0.03571,    Adjusted R-squared:  0.02302 
+## F-statistic: 2.814 on 2 and 152 DF,  p-value: 0.06307</code></pre>
+<p>De acuerdo al summary, vemos que el modelo, al tener un p-valor mayor
+al 0.05, no es significativo al momento de explicar la variable
 dependiente. Sin embargo, sí es significativa al 0.1. En cuanto al R
 cuadrado ajustado, hallamos lo siguiente: El R cuadrado es positivo y de
 0.0212. Por lo tanto, el modelo puede explicar la variabilidad de la
 migración en 2.12%. De acuerdo a los coeficientes, tenemos lo siguiente:
 Existe una relación directamente proporcional entre el deterioro de la
-paz al interior del país y la migración. Por otro lado, la legitimidad
-estatal, índice que va del 1 al 12 (donde 12 es mejor), presenta una
-relación inversamente proporcional con la dependiente. En los países en
-los que existe más legitimidad estatal, hay menos migración. Finalmente,
-“catastrofe” (riesgo ecológico), también presenta una relación inversa
-con migración. Aparantemente, mientras más riesgo ecológico existe,
-menor es la migración.</p>
-<p>##Regresión Alexandra</p>
-<pre class="r"><code>regresionAle=&quot;https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL.csv&quot;
+paz al interior del país y la migración. Por otro lado, “catastrofe”
+(riesgo ecológico), también presenta una relación inversa con migración.
+Aparantemente, mientras más riesgo ecológico existe, menor es la
+migración.</p>
+<p>Regresión Alexandra</p>
+<pre class="r"><code>regresionAle=&quot;https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv&quot;
 library(rio)
 DataFinal=import(regresionAle)</code></pre>
 <p>Regresión lineal 1</p>
@@ -480,46 +476,47 @@ coeficiente es positivo:la magnitud de ese efecto es 0.05552, lo que
 indica cuanto aumenta la cantidad de personas que migran por cada 1000
 habitantes (variable dependiente) <em>en promedio</em> cuando la
 Percepción de la Corrupción en el país se incrementa en una unidad.</p>
-<p>##Regresion todo</p>
-<pre class="r"><code>regretodo=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020 + DataFinal$`E2: Economic Inequality` + DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$LegitimidadEstatal + DataFinal$Paz + DataFinal$Catastrofe)
+<p>Regresion todo</p>
+<pre class="r"><code>regretodo=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020 + DataFinal$`E2: Economic Inequality` + DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$Paz + DataFinal$Catastrofe)
 summary(regretodo)</code></pre>
 <pre><code>## 
 ## Call:
 ## lm(formula = DataFinal$Migracion_2022 ~ DataFinal$PCorrupcion_2021 + 
 ##     DataFinal$Desempleo_2021 + DataFinal$PBI_2020 + DataFinal$`E2: Economic Inequality` + 
-##     DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$LegitimidadEstatal + 
-##     DataFinal$Paz + DataFinal$Catastrofe)
+##     DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$Paz + 
+##     DataFinal$Catastrofe)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -10.2290  -0.9002   0.1928   1.1395  15.1040 
+## -10.0261  -0.9469   0.2265   1.1389  15.1994 
 ## 
 ## Coefficients:
 ##                                     Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)                         -3.96671    3.52975  -1.124   0.2630  
-## DataFinal$PCorrupcion_2021           0.07345    0.03298   2.227   0.0275 *
-## DataFinal$Desempleo_2021            -0.04080    0.04262  -0.957   0.3400  
-## DataFinal$PBI_2020                  -0.06276    0.04120  -1.523   0.1300  
-## DataFinal$`E2: Economic Inequality`  0.24763    0.18563   1.334   0.1844  
-## DataFinal$Criminalidad               0.08401    0.31023   0.271   0.7869  
-## DataFinal$EmisionesCO2               0.10459    0.06641   1.575   0.1175  
-## DataFinal$LegitimidadEstatal         0.12909    0.18213   0.709   0.4796  
-## DataFinal$Paz                       -0.14366    0.82834  -0.173   0.8626  
-## DataFinal$Catastrofe                -0.44636    0.30434  -1.467   0.1447  
+## (Intercept)                         -2.95250    3.22097  -0.917   0.3609  
+## DataFinal$PCorrupcion_2021           0.05857    0.02539   2.307   0.0225 *
+## DataFinal$Desempleo_2021            -0.04369    0.04235  -1.032   0.3040  
+## DataFinal$PBI_2020                  -0.05965    0.04089  -1.459   0.1469  
+## DataFinal$`E2: Economic Inequality`  0.26047    0.18442   1.412   0.1601  
+## DataFinal$Criminalidad               0.04215    0.30402   0.139   0.8899  
+## DataFinal$EmisionesCO2               0.11838    0.06338   1.868   0.0639 .
+## DataFinal$Paz                        0.02477    0.79211   0.031   0.9751  
+## DataFinal$Catastrofe                -0.41331    0.30021  -1.377   0.1708  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2.974 on 139 degrees of freedom
+## Residual standard error: 2.969 on 140 degrees of freedom
 ##   (6 observations deleted due to missingness)
-## Multiple R-squared:  0.1676, Adjusted R-squared:  0.1137 
-## F-statistic:  3.11 on 9 and 139 DF,  p-value: 0.001943</code></pre>
-<p>#Ya aplicando todas las variables, se ve que la anterior variable
-corrupción que sí llegaba a explicar un poco de la dependiente, ahora ha
-reducido su efecto notoriamente. En general, el modelo puede llegar a
-explicar un 11% de la hipótesis, mismo valor que se obtenía al utilizar
-la corrupción, desempleo y el PBI de los países. De todas formas, este
-modelo junto con el tercer modelo explican de forma mayor la hipótesis
-antes que los primeros modelos.</p>
+## Multiple R-squared:  0.1646, Adjusted R-squared:  0.1169 
+## F-statistic: 3.449 on 8 and 140 DF,  p-value: 0.001177</code></pre>
+<p>Ya aplicando todas las variables, vemos que, si bien la variable
+corrupción ha perdido significancia a comparación del modelo anterior,
+continúa explicando la variable dependiente. Esta vez, al 0.05. Además,
+señalamos que la variable EmisionesCO2 es significativa al 0.1. En
+general, este modelo puede explicar un 11% de la hipótesis. Dicho valor
+es el mismo que se obtenía al utilizar la corrupción, el desempleo y el
+PBI. En conclusión, este modelo final, que acopla toda las variables,
+junto al tercer modelo, explican de mejor manera la hipótesis a
+comparación de los dos primeros.</p>
 
 
 

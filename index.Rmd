@@ -8,7 +8,7 @@ output: html_document
 
 ```{r}
 library(rio)
-regresionLuis = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL.csv")
+regresionLuis = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
 ```
 
 ```{r}
@@ -17,27 +17,28 @@ modeloL<-lm(regresionLuis$Migracion_2022~ regresionLuis$EmisionesCO2 + regresion
 summary(modeloL)
 ```
 
-#Viendo los resultados, las variables analizadas no resultan significativas. En realidad, el modelo en sí no puede explicar la dependiente en este caso. Viendo el R ajustad, nos damos cuenta que este modelo solo explica un 0.05% del caso analizado. Todas las variables en sí están bastante lejanas de poder explicar algo en el modelo. Mientras más contaminación por CO2, más migración de la población. Mientras más criminalidad, más migración. En el caso de la desigualdad económica, se encuentra que existe una relación inversamente proporcional: mientras más desigualdad, menos migración. 
+Viendo los resultados, las variables analizadas no resultan significativas. En realidad, el modelo en sí no puede explicar la dependiente en este caso. Viendo el R ajustad, nos damos cuenta que este modelo solo explica un 0.05% del caso analizado. Todas las variables en sí están bastante lejanas de poder explicar algo en el modelo. Mientras más contaminación por CO2, más migración de la población. Mientras más criminalidad, más migración. En el caso de la desigualdad económica, se encuentra que existe una relación inversamente proporcional: mientras más desigualdad, menos migración. 
 
 
-##Regresión Athina
+Regresión Athina
 
 ```{r}
-regresionAth = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL.csv")
+regresionAth = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
 ```
 
 ```{r}
-modeloAth = formula(Migracion_2022 ~ Catastrofe + LegitimidadEstatal + Paz)
+modeloAth = formula(Migracion_2022 ~ Catastrofe + Paz)
 r1 = lm(modeloAth, data = regresionAth)
 summary(r1)
 ```
-#De acuerdo al summary, vemos que el modelo, al tener un p-valor mayor al 0.05, no es significativo al momento de explicar la variable dependiente. Sin embargo, sí es significativa al 0.1. En cuanto al R cuadrado ajustado, hallamos lo siguiente: El R cuadrado es positivo y de 0.0212. Por lo tanto, el modelo puede explicar la variabilidad de la migración en 2.12%.  De acuerdo a los coeficientes, tenemos lo siguiente: Existe una relación directamente proporcional entre el deterioro de la paz al interior del país y la migración. Por otro lado, la legitimidad estatal, índice que va del 1 al 12 (donde 12 es mejor), presenta una relación inversamente proporcional con la dependiente. En los países en los que existe más legitimidad estatal, hay menos migración. Finalmente, "catastrofe" (riesgo ecológico), también presenta una relación inversa con migración. Aparantemente, mientras más riesgo ecológico existe, menor es la migración. 
+De acuerdo al summary, vemos que el modelo, al tener un p-valor mayor al 0.05, no es significativo al momento de explicar la variable dependiente. Sin embargo, sí es significativa al 0.1. En cuanto al R cuadrado ajustado, hallamos lo siguiente: El R cuadrado es positivo y de 0.0212. Por lo tanto, el modelo puede explicar la variabilidad de la migración en 2.12%.  De acuerdo a los coeficientes, tenemos lo siguiente: Existe una relación directamente proporcional entre el deterioro de la paz al interior del país y la migración. Por otro lado, "catastrofe" (riesgo ecológico), también presenta una relación inversa con migración. Aparantemente, mientras más riesgo ecológico existe, menor es la migración. 
 
 
-##Regresión Alexandra
+
+Regresión Alexandra
 
 ```{r}
-regresionAle="https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL.csv"
+regresionAle="https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv"
 library(rio)
 DataFinal=import(regresionAle)
 ```
@@ -49,13 +50,13 @@ summary(regL1)
 ```
 En primer lugar,podemos ver que la regresión es válida a partir del anova (p-value < 0.05). Sin embargo, el modelo solo explica en un 11% a la variable dependiente, lo cual es un valor bajo. La única variable significativa (al 0.05) para el modelo es la Percepción de la corrupción. A su vez, es una relación directa debido a que el coeficiente es positivo:la magnitud de ese efecto es 0.05552, lo que indica cuanto aumenta la cantidad de personas que migran por cada 1000 habitantes (variable dependiente) *en promedio* cuando la Percepción de la Corrupción en el país se incrementa en una unidad.
 
-##Regresion todo
+Regresion todo
 
 ```{r}
-regretodo=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020 + DataFinal$`E2: Economic Inequality` + DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$LegitimidadEstatal + DataFinal$Paz + DataFinal$Catastrofe)
+regretodo=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020 + DataFinal$`E2: Economic Inequality` + DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$Paz + DataFinal$Catastrofe)
 summary(regretodo)
 ```
-#Ya aplicando todas las variables, se ve que la anterior variable corrupción que sí llegaba a explicar un poco de la dependiente, ahora ha reducido su efecto notoriamente. En general, el modelo puede llegar a explicar un 11% de la hipótesis, mismo valor que se obtenía al utilizar la corrupción, desempleo y el PBI de los países. De todas formas, este modelo junto con el tercer modelo explican de forma mayor la hipótesis antes que los primeros modelos. 
-
+Ya aplicando todas las variables, vemos que, si bien la variable corrupción ha perdido significancia a comparación del modelo anterior, continúa explicando la variable dependiente. Esta vez, al 0.05. Además, señalamos que la variable EmisionesCO2 es significativa al 0.1. En general, este modelo puede explicar un 11% de la hipótesis. Dicho valor es el mismo que se obtenía al utilizar la corrupción, el desempleo y el PBI. 
+En conclusión, este modelo final, que acopla toda las variables, junto al tercer modelo, explican de mejor manera la hipótesis a comparación de los dos primeros.
 
 
