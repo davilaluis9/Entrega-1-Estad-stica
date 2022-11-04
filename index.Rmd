@@ -10,13 +10,13 @@ knitr::include_graphics("logoPUCP (1).png")
 ```
 
 
-```{r}
+```{r include=FALSE}
 library(rio)
 regresionLuis = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
 ```
 
 
-```{r}
+```{r include=FALSE}
 
 modeloL<-lm(regresionLuis$Migracion_2022~ regresionLuis$EmisionesCO2 + regresionLuis$`E2: Economic Inequality` + regresionLuis$Criminalidad, regresionLuis)
 summary(modeloL)
@@ -25,39 +25,32 @@ summary(modeloL)
 Viendo los resultados, las variables analizadas no resultan significativas. En realidad, el modelo en sí no puede explicar la dependiente en este caso. Viendo el R ajustad, nos damos cuenta que este modelo solo explica un 0.05% del caso analizado. Todas las variables en sí están bastante lejanas de poder explicar algo en el modelo. Mientras más contaminación por CO2, más migración de la población. Mientras más criminalidad, más migración. En el caso de la desigualdad económica, se encuentra que existe una relación inversamente proporcional: mientras más desigualdad, menos migración. 
 
 
-Regresión Athina
-
-```{r}
+```{r include=FALSE}
 regresionAth = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
 ```
 
-```{r}
+```{r include=FALSE}
 modeloAth = formula(Migracion_2022 ~ Catastrofe + Paz)
 r1 = lm(modeloAth, data = regresionAth)
 summary(r1)
 ```
 De acuerdo al summary, vemos que el modelo, al tener un p-valor mayor al 0.05, no es significativo al momento de explicar la variable dependiente. Sin embargo, sí es significativa al 0.1. En cuanto al R cuadrado ajustado, hallamos lo siguiente: El R cuadrado es positivo y de 0.0212. Por lo tanto, el modelo puede explicar la variabilidad de la migración en 2.12%.  De acuerdo a los coeficientes, tenemos lo siguiente: Existe una relación directamente proporcional entre el deterioro de la paz al interior del país y la migración. Por otro lado, "catastrofe" (riesgo ecológico), también presenta una relación inversa con migración. Aparantemente, mientras más riesgo ecológico existe, menor es la migración. 
 
-
-
-Regresión Alexandra
-
-```{r}
+```{r include=FALSE}
 regresionAle="https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv"
 library(rio)
 DataFinal=import(regresionAle)
 ```
 
-Regresión lineal 1
-```{r}
+```{r include=FALSE}
 regL1=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020)
 summary(regL1)
 ```
 En primer lugar,podemos ver que la regresión es válida a partir del anova (p-value < 0.05). Sin embargo, el modelo solo explica en un 11% a la variable dependiente, lo cual es un valor bajo. La única variable significativa (al 0.05) para el modelo es la Percepción de la corrupción. A su vez, es una relación directa debido a que el coeficiente es positivo:la magnitud de ese efecto es 0.05552, lo que indica cuanto aumenta la cantidad de personas que migran por cada 1000 habitantes (variable dependiente) *en promedio* cuando la Percepción de la Corrupción en el país se incrementa en una unidad.
 
-Regresion todo
+Regresion conjunta (todas las variables)
 
-```{r}
+```{r include=FALSE}
 regretodo=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020 + DataFinal$`E2: Economic Inequality` + DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$Paz + DataFinal$Catastrofe)
 summary(regretodo)
 ```
