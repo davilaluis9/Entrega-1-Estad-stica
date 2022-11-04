@@ -2,7 +2,10 @@
 title: "Estadística para el análisis político II"
 author: "Luis Dávila, Athina Perez, Alexandra Porras"
 date: '2022-10-07'
-output: html_document
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
 ---
 
 ```{r,echo=FALSE, out.width="30%",fig.align="center"}
