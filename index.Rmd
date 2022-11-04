@@ -10,51 +10,67 @@ knitr::include_graphics("logoPUCP (1).png")
 ```
 
 
-```{r include=FALSE}
+```{r echo=FALSE}
 library(rio)
-regresionLuis = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
+library(knitr)
+library(modelsummary)
+DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
+library(magrittr)
+DataFINAL%>%
+    rmarkdown::paged_table()
 ```
 
 
-```{r include=FALSE}
+```{r echo=FALSE}
 
-modeloL<-lm(regresionLuis$Migracion_2022~ regresionLuis$EmisionesCO2 + regresionLuis$`E2: Economic Inequality` + regresionLuis$Criminalidad, regresionLuis)
-summary(modeloL)
+modelo_LUIS_D<-lm(data=DataFINAL,Migracion_2022~EmisionesCO2+ `E2: Economic Inequality` + Criminalidad)
+model1=list('Regresion 1' = modelo_LUIS_D)
+modelsummary(model1, title = "Primera regresion",
+             stars = TRUE,
+             output = "kableExtra")
 ```
 
 Viendo los resultados, las variables analizadas no resultan significativas. En realidad, el modelo en sí no puede explicar la dependiente en este caso. Viendo el R ajustad, nos damos cuenta que este modelo solo explica un 0.05% del caso analizado. Todas las variables en sí están bastante lejanas de poder explicar algo en el modelo. Mientras más contaminación por CO2, más migración de la población. Mientras más criminalidad, más migración. En el caso de la desigualdad económica, se encuentra que existe una relación inversamente proporcional: mientras más desigualdad, menos migración. 
 
 
-```{r include=FALSE}
-regresionAth = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
-```
-
-```{r include=FALSE}
-modeloAth = formula(Migracion_2022 ~ Catastrofe + Paz)
-r1 = lm(modeloAth, data = regresionAth)
-summary(r1)
+```{r echo=FALSE}
+modelo_ATHINA_P<-lm(data=DataFINAL, Migracion_2022~ Catastrofe + Paz)
+model2=list('Regresion 2' = modelo_ATHINA_P)
+modelsummary(model2, title = "Segunda regresion",
+             stars = TRUE,
+             output = "kableExtra")
 ```
 De acuerdo al summary, vemos que el modelo, al tener un p-valor mayor al 0.05, no es significativo al momento de explicar la variable dependiente. Sin embargo, sí es significativa al 0.1. En cuanto al R cuadrado ajustado, hallamos lo siguiente: El R cuadrado es positivo y de 0.0212. Por lo tanto, el modelo puede explicar la variabilidad de la migración en 2.12%.  De acuerdo a los coeficientes, tenemos lo siguiente: Existe una relación directamente proporcional entre el deterioro de la paz al interior del país y la migración. Por otro lado, "catastrofe" (riesgo ecológico), también presenta una relación inversa con migración. Aparantemente, mientras más riesgo ecológico existe, menor es la migración. 
 
-```{r include=FALSE}
-regresionAle="https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv"
-library(rio)
-DataFinal=import(regresionAle)
-```
 
-```{r include=FALSE}
-regL1=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020)
-summary(regL1)
+```{r echo=FALSE}
+modelo_ALEXANDRA_P=lm(data=DataFINAL,Migracion_2022~PCorrupcion_2021+ Desempleo_2021+PBI_2020)
+model3=list('Regresion 3' = modelo_ALEXANDRA_P)
+modelsummary(model3, title = "Tercera regresion",
+             stars = TRUE,
+             output = "kableExtra")
 ```
 En primer lugar,podemos ver que la regresión es válida a partir del anova (p-value < 0.05). Sin embargo, el modelo solo explica en un 11% a la variable dependiente, lo cual es un valor bajo. La única variable significativa (al 0.05) para el modelo es la Percepción de la corrupción. A su vez, es una relación directa debido a que el coeficiente es positivo:la magnitud de ese efecto es 0.05552, lo que indica cuanto aumenta la cantidad de personas que migran por cada 1000 habitantes (variable dependiente) *en promedio* cuando la Percepción de la Corrupción en el país se incrementa en una unidad.
 
 Regresion conjunta (todas las variables)
 
-```{r include=FALSE}
-regretodo=lm(DataFinal$Migracion_2022~DataFinal$PCorrupcion_2021+ DataFinal$Desempleo_2021+DataFinal$PBI_2020 + DataFinal$`E2: Economic Inequality` + DataFinal$Criminalidad + DataFinal$EmisionesCO2 + DataFinal$Paz + DataFinal$Catastrofe)
-summary(regretodo)
+```{r echo=FALSE}
+modelo_FINAL=lm(data=DataFINAL, Migracion_2022~PCorrupcion_2021+ Desempleo_2021+PBI_2020+`E2: Economic Inequality`+Criminalidad+EmisionesCO2+Paz+Catastrofe)
+model4=list('Regresion conjunta' = modelo_FINAL)
+modelsummary(model4, title = "Regresion total",
+             stars = TRUE,
+             output = "kableExtra")
 ```
+Formula de la regresion: 
+
+Migracion= 0.05857(PCorrupcion_2021) - 0.04369(Desempleo_2021) - 0.05965(PBI_2020) + 0.26047(E2: Economic Inequality) + 0.04215(Criminalidad) + 0.11838(Emisiones CO2) + 0.02477(Paz) - 0.41331(Catastrofe)
+
 Ya aplicando todas las variables, vemos que, si bien la variable corrupción ha perdido significancia a comparación del modelo anterior, continúa explicando la variable dependiente. Esta vez, al 0.05. Además, señalamos que la variable EmisionesCO2 es significativa al 0.1. En general, este modelo puede explicar un 11% de la hipótesis. Dicho valor es el mismo que se obtenía al utilizar la corrupción, el desempleo y el PBI. 
 En conclusión, este modelo final, que acopla toda las variables, junto al tercer modelo, explican de mejor manera la hipótesis a comparación de los dos primeros.
 
+```{r echo= FALSE}
+library(stargazer)
+library(jtools)
+model5=stargazer(model1,model2,model3,model4,type ="text")
+```
 
