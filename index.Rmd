@@ -11,6 +11,9 @@ library(rio)
 regresionLuis = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL2.csv")
 ```
 
+hola
+
+
 ```{r}
 
 modeloL<-lm(regresionLuis$Migracion_2022~ regresionLuis$EmisionesCO2 + regresionLuis$`E2: Economic Inequality` + regresionLuis$Criminalidad, regresionLuis)
