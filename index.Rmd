@@ -1,6 +1,6 @@
 ---
-title: "Regresiones"
-author: "Luis Dávila"
+title: "Estadística para el análisis político II"
+author: "Luis Dávila, Athina Perez, Alexandra Porras"
 date: '2022-10-07'
 output: html_document
 ---
