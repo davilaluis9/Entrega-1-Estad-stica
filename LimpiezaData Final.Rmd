@@ -236,8 +236,13 @@ dataFINAL = select(dataFINAL, ISO, pais, Migracion_2022, Criminalidad, PCorrupci
 
 
 ```{r}
+dataFINAL = dataFINAL[-c(28,110),]
+```
+
+
+```{r}
 library(rio)
-export(dataFINAL,"DataFINAL2.csv")
+export(dataFINAL,"DataFINAL4.csv")
 ```
 
 
