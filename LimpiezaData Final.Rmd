@@ -232,17 +232,19 @@ names(dataFINAL)
 
 ```{r}
 dataFINAL = select(dataFINAL, ISO, pais, Migracion_2022, Criminalidad, PCorrupcion_2021, Desempleo_2021, PBI_2020, 'E2: Economic Inequality', EmisionesCO2, Paz, Catastrofe)
+
 ```
 
 
 ```{r}
 dataFINAL = dataFINAL[-c(28,110),]
+dataFINAL = dataFINAL[complete.cases(dataFINAL[,-1,-2]),]
 ```
 
 
 ```{r}
 library(rio)
-export(dataFINAL,"DataFINAL4.csv")
+export(dataFINAL,"DataFINAL5.csv")
 ```
 
 

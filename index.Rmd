@@ -20,7 +20,7 @@ knitr::include_graphics("logoPUCP (1).png")
 library(rio)
 library(knitr)
 library(modelsummary)
-DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL3.csv")
+DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL5.csv")
 library(magrittr)
 DataFINAL%>%
     rmarkdown::paged_table()

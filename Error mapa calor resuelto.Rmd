@@ -1,0 +1,123 @@
+---
+title: "data otra"
+author: "Luis Dávila"
+date: "2022-11-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rio)
+DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL4.csv")
+```
+
+
+
+```{r}
+library(sf)
+mapDIS=sf::read_sf("world-administrative-boundaries.shp")
+head(mapDIS)
+```
+
+
+```{r}
+DataFINAL$cortes = ifelse(DataFINAL$Migracion_2022 <= -1,1,
+                         ifelse(DataFINAL$Migracion_2022>-1 & DataFINAL$Migracion_2022<= 0,2,
+                                ifelse(DataFINAL$Migracion_2022>0,3,0)))
+```
+
+
+
+```{r}
+DataFINAL$cortes = ifelse(DataFINAL$Migracion_2022 <= -6,1,
+                         ifelse(DataFINAL$Migracion_2022>-6 & DataFINAL$Migracion_2022<= 0,2,
+                                ifelse(DataFINAL$Migracion_2022>0 & DataFINAL$Migracion_2022<= 6,3,
+                                ifelse(DataFINAL$Migracion_2022>6,4,0))))
+```
+
+
+
+```{r}
+colnames(DataFINAL)[1] = "iso3"
+mapacalor= merge(mapDIS, DataFINAL, by = "iso3", all.x = T) #Siempre primero el shapefile y se quedan con los casos completos de los polígonos. Aquí estaba el error.
+```
+
+
+
+
+```{r}
+library(ggplot2)
+mapaleyendaL= ggplot(mapacalor)+ geom_sf() + theme_light()
+
+mapaleyL=  mapaleyendaL + geom_sf(data=mapacalor,
+              aes(fill=cortes), color = "black")
+
+
+
+mapa3= mapaleyL +coord_sf() + scale_fill_gradient(low = "firebrick",  high = "white", breaks=seq(from=-11, to=14, by=.5)) + theme_void() + 
+  
+theme(axis.title = element_blank(), axis.text = element_blank(), legend.position = c(1.1,0.55)) + labs(fill=" ") + theme(legend.text = element_text(size = 13)) +
+  
+labs(title = "Migración 2022", subtitle = "Mapa de calor",caption = "Los datos perdidos son de color gris") +
+  
+theme(
+plot.title = element_text(color="black", size=15, face="bold"),
+plot.caption = element_text(color = "black", size=10))
+mapa3
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##Cuántas latentes salen (explicar) y explicar las varianzas acumuladas (explicar los porcentajes).
+
+##Se puede meter así nomás al cluster y no es necesario estandarizar.
+
+##Mapa de calor de la variable de la dependiente y un mapa de conglomerados
+
+1. Pedir número óptimo de conglomerados
+2. Hacer las 3 técnicas
+3. Reportar las siluetas y usamos la que mejor de
+4. Al final, la data va a tener una cluster 
+5. Gráficos, usar la técnica de conglomerados y explicarlo y el mapa
+6. Al final el modelo
+
+
+
+
+#El score va a resumir un porcentaje de corrupción 
+
+
+
+
+
+
+
+
+```{r}
+export(DataFINAL,"DataFINAL3.csv")
+```
+
+
