@@ -59,3 +59,12 @@ Variables independientes:
      * Base de datos: Banco Mundial (Desempleo)
      * Enlace: https://datos.bancomundial.org/indicator/SL.UEM.TOTL.ZS
      * Justificación: Altos niveles de desempleo en el país de origen pueden funcionar como incentivos para la migración en tanto implica pérdidas económicas para los        ciudadanos. Asimismo, siguiendo a Sen, el desempleo, además del impacto económico negativo, afecta a nivel personal a los ciudadanos en su sentido de                  autorrealización, importante para el desarrollo humano. Por lo mismo, a mayores niveles de desempleo, podría haber una mayor insatisfacción que desemboque en un        incremento de la migración en la búsqueda de oportunidades laborales.
+
+
+Contenido de repositorio:
+1. DataFinal6.csv: Base de datos con los casos completos
+2. LimpiezaData Final.rmd: Rmd cm la limpieza para la base de datos 
+3. Migración2022.csv: Base con el índice de migración en el  año 2022 por cada 10 000 habitantes
+4. catastrofe.xlsx: Base con el índice de riesgo ecológico por país 
+5. Criminalidad1.xlsx: Esto es de Luis 
+6. Legitimidad estatal 2021(1).xlsx: Base con el indicador de legitimidad estatal por países (descartada de la base de datos final)
