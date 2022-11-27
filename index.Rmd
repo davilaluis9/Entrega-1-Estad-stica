@@ -173,7 +173,7 @@ En esta primera, observamos que las variables independientes que más han contri
 ```{r echo=FALSE}
 sort(resfa$complexity)%>%kbl()%>%kable_styling()
 ```
-En cuanto a la complejidad de las variables, es relevante señalar que "Paz", así como contribuye a los factores, también presenta tal complejidad que se acerca a más de uno. Otros componentes que también demuestran complejidad son "Catastrofe" y, en menor medida, "Criminalidad". 
+En cuanto a la complejidad de las variables, es relevante señalar que "Paz", así como contribuye a los factores, también presenta tal complejidad que se acerca a más de uno. Otros componentes que también demuestran complejidad son "Catastrofe" y, en menor medida, "PCorrupción_2021". 
 
 
 A continuación, observamos los valores proyectados de ambos factores. 
