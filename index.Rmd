@@ -12,10 +12,13 @@ knitr::include_graphics("logoPUCP (1).png")
 
 
 
-En el siguiente análisis a presentar, se trata de analizar las razones que pueden haber influenciado la migración global para el año 2022. Esto permitiría entender qué posibles factores dentro de los países son afectan de forma negativa la percepción de un país en particular y ello resulta en una migración de sus ciudadanos. Para lograr este objetivo, se han realizado regresiones lineales para determinar cómo diferentes modelos con diferentes factores funcionan. Asimismo, se presentan técnicas para explicar las dimensiones o variables a utilizar y poder determinar cuáles de ellas resultan parecidas entre sí y afecten similarmente a la variable latente. Finalmente, se presenta un análisis de conglomerados para visualizar la similitud entre casos, o países presentados, y que puedan poseer características similares. Ello permite entender qué países son los que pueden poseer políticas o niveles de calidad de vida parecidas y en la forma en la que puedan afectar a la población.
+En el siguiente análisis a presentar, se trata de analizar las razones que pueden haber influenciado la migración global para el año 2022. Esto permitiría entender qué posibles factores  son afectan de forma negativa la percepción de un país en particular y ello resulta en una migración de sus ciudadanos. Para lograr este objetivo, se han realizado regresiones lineales para determinar cómo diferentes modelos con diferentes factores funcionan. Asimismo, se presentan técnicas para explicar las variables a utilizar y poder determinar cuáles de ellas resultan parecidas entre sí y afecten similarmente a la variable latente. Finalmente, se presenta un análisis de conglomerados para visualizar la similitud entre casos, o países presentados, y que puedan poseer características similares. Ello permite entender qué países son los que pueden poseer políticas o niveles de calidad de vida parecidas y en la forma en la que puedan afectar a la población.
 
 ```{r echo=FALSE, message=FALSE}
 library(sf)
+library(factoextra)
+library(magrittr)
+library(kableExtra)
 library(rio)
 library(knitr)
 library(modelsummary)
@@ -117,27 +120,25 @@ Vemos que el Overall MSA es de 0.78. Al ser un valor superior a 0.6, podemos afi
 Por su parte, sobre cada variable independiente, observamos lo siguiente: Teniendo en cuenta el valor de 0.6 como punto de corte, las variables que menos aportan al EFA son "Desempleo_2021" y "PBI_2020". Por el contrario, los indicadores que más aporte ofrecen son "E2..Economic.Inequality", "Emisiones de CO2", "Paz" y "Catastrofe". 
 
 
-Como parte del proceso, elaboramos las pruebas de matriz de identidad y matriz de singularidad: 
+Como parte del proceso, también se evaluaron las pruebas de matriz de identidad y matriz de singularidad. Así pues, los resultados de ambas pruebas dieron resultado negativo. Ello indica que, en la matriz de identidad, las variables evaluadas poseen una correlación consigo mismas. En el caso de la matriz de singularidad, nos permite entender que posee una matriz inversa; por ende, se puede realizar el análisis.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 cortest.bartlett(corMatrix,n=nrow(theData))$p.value>0.05
 ```
 
-
-```{r echo=FALSE}
+```{r echo=FALSE, include=FALSE}
 library(matrixcalc)
 is.singular.matrix(corMatrix)
 ```
-Como ambas resultan falsas, podemos proceder a aplicar el código para la sugerencia del número de factores. 
 
-Es relevante señalar que, pese a que la normalización de las variables no es exigida para la elaboración del EFA, en el presente trabajo, decidimos optar por ella. Esto obedece a un motivo específico: Sin realizarla, el número de factores que se nos sugiere para redimensionar la base de datos es 1. Dicha alternativa no aporta a nuestra investigación. Con las variables normalizadas, observamos que se nos sugiere dividir las variables en dos factores. 
+Es relevante señalar que, pese a que la normalización de las variables no es exigida para la elaboración del EFA, en el presente trabajo, se decide optar por ella. Esto obedece a un motivo específico: Sin realizarla, el número de factores que se nos sugiere para redimensionar la base de datos es 1. Dicha alternativa no aporta a nuestra investigación. Con las variables normalizadas, observamos que se nos sugiere dividir las variables en dos factores. 
 
 ```{r include=FALSE}
 theData = as.data.frame(theData)
 theDataNorm=scale(theData)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 fa.parallel(theDataNorm, fa = 'fa',correct = T,plot = F)
 ```
 
@@ -154,24 +155,25 @@ Vemos que, en el proceso de redimensionar 8 variables a 2, se ha logrado recuper
 
 Sobre las variables independientes, tenemos lo siguiente: Tanto "Criminalidad" como "P.Corrupción_2021", "E2..Economic.Inequality", "EmisionesCO2", "Paz" y "Catastrofe" aparecen en ambos factores. Sin embargo, estableceremos 0.5 como un punto de corte para determinar a qué factor corresponderá cada componente. En los casos de "Desempleo_2021" y de "PBI_2020", encontramos que ambos indicadores solamente pertenecen a un factor: el segundo y el primero, respectivamente. 
 
-```{r echo=FALSE}
+```{r echo=FALSE, include=FALSE}
 print(resfa$loadings,cutoff = 0.5)
 ```
-Luego de elaborar el corte, damos cuenta de que "Desempleo_2021", "PBI_2020" y "Catastrofe" ya no se encuentran en ningún factor. Esto debido a que las tres variables contaban con valores inferiores a 0.5. 
-En cuanto a las demás variables, todas han sido ubicadas en un solo factor con excepción de "Paz", pues los dos valores que presenta se encuentran por encima del punto de corte. 
 
 ```{r echo=FALSE}
 fa.diagram(resfa,main = "Resultados del EFA")
 ```
+Luego de elaborar el corte, damos cuenta de que "Desempleo_2021", "PBI_2020" y "Catastrofe" ya no se encuentran en ningún factor. Esto debido a que las tres variables contaban con valores inferiores a 0.5. 
+En cuanto a las demás variables, todas han sido ubicadas en un solo factor con excepción de "Paz", pues los dos valores que presenta se encuentran por encima del punto de corte.No obstante, en el siguiente grafico, la variable mencionada fue seleccionada para el segundo factor.
 
-A continuación, realizamos las pruebas de comunalidad y de complejidad. 
+A continuación, se realizan las pruebas de comunalidad y de complejidad. 
+
 ```{r echo=FALSE}
-sort(resfa$communality)
+sort(resfa$communality)%>%kbl()%>%kable_styling()
 ```
 En esta primera, observamos que las variables independientes que más han contribuído a los factores son "Criminalidad", "Paz", "E2..Economic.Inequality" y "PCorrupción_2021". 
 
 ```{r echo=FALSE}
-sort(resfa$complexity)
+sort(resfa$complexity)%>%kbl()%>%kable_styling()
 ```
 En cuanto a la complejidad de las variables, es relevante señalar que "Paz", así como contribuye a los factores, también presenta tal complejidad que se acerca a más de uno. Otros componentes que también demuestran complejidad son "Catastrofe" y, en menor medida, "Criminalidad". 
 
@@ -179,7 +181,7 @@ En cuanto a la complejidad de las variables, es relevante señalar que "Paz", as
 A continuación, observamos los valores proyectados de ambos factores. 
 ```{r echo=FALSE}
 library(magrittr)
-as.data.frame(resfa$scores)%>%head()
+as.data.frame(resfa$scores)%>%head()%>%kbl()%>%kable_styling()
 ```
 
 ### 4. Análisis de conglomerados
@@ -193,7 +195,7 @@ str(DataFINAL)
 boxplot(DataFINAL[,c(4:11)],horizontal = F,las=2,cex.axis = 0.5)
 ```
 
-```{r echo=FALSE}
+```{r include=FALSE}
 cor(DataFINAL[,c(4:11)])
 ```
 
@@ -224,7 +226,8 @@ fviz_nbclust(dataClus, hcut,diss=g.dist,method = "gap_stat",k.max = 10,verbose =
 #JERARQUICA DIVISIVA
 fviz_nbclust(dataClus, hcut,diss=g.dist,method = "gap_stat",k.max = 10,verbose = F,hc_func = "diana")
 ```
-La técnica de jerarquización divisiva (Diana) fue la escogida para el proceso de clusterización debido a que cuenta con el mayor promedio de siluetas (0.27) en comparación a la técnia de partición y jerarquización aglomerativa, cuyas siluetas promedio son 0.24 y 0.23 respectivamente. Asimismo, es importante acotar que, si bien el estadístico gap sugiere que la cantidad óptima de aglomerados o clusters para el modelo es uno (1), se decidió utilizar tres clusters debido a que permite una mejor interpretación y diferenciación visual entre los países. Aquella decisión fue tomada en base a la leve variación en el promedio de las siluetas de la técnica Diana, la cual pasó de 0.31 con dos clusters a 0.27 con tres clusters. El modelo, a su vez, cuenta únicamente con seis países mal clusterizados:Uruguay, Bangladesh, Mongolia, Bhutan, Lithuania y Latvia. En tanto es una cantidad reducida de países, el modelo sugiere ser el más apropiado.
+
+La técnica de jerarquización divisiva (Diana) fue la escogida para el proceso de clusterización debido a que cuenta con el mayor promedio de siluetas (0.27) en comparación a la técnia de partición y jerarquización aglomerativa, cuyas siluetas promedio son 0.24 y 0.23 respectivamente. Asimismo, es importante acotar que, si bien el estadístico gap sugiere que la cantidad óptima de aglomerados o clusters para el modelo es uno (1), se decidió utilizar tres clusters debido a que permite una mejor interpretación y diferenciación visual entre los países. Aquella decisión fue tomada en base a la leve variación en el promedio de las siluetas de la técnica Diana, la cual pasó de 0.31 con dos clusters a 0.27 con tres clusters. El modelo, a su vez, cuenta únicamente con seis países mal clusterizados:Uruguay, Bangladesh, Mongolia, Bhutan, Lithuania y Latvia. En tanto es una cantidad reducida de países, el modelo sugiere ser el más apropiado. Aquello se puede apreciar en el tercer grafico mostrado a continuación. 
 
 
 ```{r include=FALSE}
@@ -289,7 +292,7 @@ poorDIANA
 ```
 
 ```{r echo=FALSE}
-aggregate(.~ diana, data=dataClus,mean)
+aggregate(.~ diana, data=dataClus,mean)%>%kbl()%>%kable_styling()
 ```
 
 Finalmente, el modelo establece tres grupos de países según sus niveles de criminalidad, desempleo, crecimiento económico, desigualdad, niveles de contaminación (a partir de la camtidad de emisiones de dióxido de carbono) y niveles de deterioro de la paz. El grupo "1" comprende a los países que, a nivel general, presentan los peores niveles en las variables anteriormente mencionadas, a excepción de los niveles de contaminación por emisiones de CO2. El grupo "2", por su parte, comprende a los países que presentan niveles intermedios de criminalidad, desigualdad y deterioro de la paz. Respecto al nivel de desempleo y crecimiento del PBI, estos países cuentan los niveles más bajos entre los tres grupos, pese a que la diferencia con el grupo "3" no es tan lejana. Aquello es especialmente relevante en los niveles de decrecimiento económico ya que la diferencia entre los países del grupo "2" y "3" es, en promedio, menor a 1 punto.Finalmente, los países del grupo "3" son los que cuentan con los niveles más bajos de criminalidad, desigualdad y deterioro de la paz. Si bien han tenido un decrecimiento del PBI ligeramente mayor a los países del grupo "2", sus niveles de desigualdad son menores (la mitad de aquellos) lo cual es importante de analizar ya que, como sugieren autores como Thomas Picketty (2013), indicadores como el PBI pueden nignorar aspectos relevantes de una sociedad como la distribución de la riqueza.
