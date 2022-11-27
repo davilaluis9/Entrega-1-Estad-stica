@@ -68,3 +68,8 @@ Contenido de repositorio:
 4. catastrofe.xlsx: Base con el índice de riesgo ecológico por país 
 5. Criminalidad1.xlsx: Esto es de Luis 
 6. Legitimidad estatal 2021(1).xlsx: Base con el indicador de legitimidad estatal por países (descartada de la base de datos final)
+
+
+
+Ver Github pages por aquí: https://davilaluis9.github.io/Entrega-1-Estad-stica/
+
