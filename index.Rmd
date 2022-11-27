@@ -10,8 +10,6 @@ output:
 knitr::include_graphics("logoPUCP (1).png") 
 ```
 
-
-
 En el siguiente análisis a presentar, se trata de analizar las razones que pueden haber influenciado la migración global para el año 2022. Esto permitiría entender qué posibles factores  son afectan de forma negativa la percepción de un país en particular y ello resulta en una migración de sus ciudadanos. Para lograr este objetivo, se han realizado regresiones lineales para determinar cómo diferentes modelos con diferentes factores funcionan. Asimismo, se presentan técnicas para explicar las variables a utilizar y poder determinar cuáles de ellas resultan parecidas entre sí y afecten similarmente a la variable latente. Finalmente, se presenta un análisis de conglomerados para visualizar la similitud entre casos, o países presentados, y que puedan poseer características similares. Ello permite entender qué países son los que pueden poseer políticas o niveles de calidad de vida parecidas y en la forma en la que puedan afectar a la población.
 
 ```{r echo=FALSE, message=FALSE}
