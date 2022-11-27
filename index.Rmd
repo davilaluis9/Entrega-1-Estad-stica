@@ -119,7 +119,7 @@ Ahora, verificamos si los datos nos permitirán factorizar:
 library(psych)
 psych::KMO(corMatrix) 
 ```
-Vemos que el Overall MSA es de 0.78. Al ser un valor superior a 0.6, podemos afirmar que aporta al análisis. 
+Vemos que el Overall MSA es de 0.79. Al ser un valor superior a 0.6, podemos afirmar que aporta al análisis. 
 
 Por su parte, sobre cada variable independiente, observamos lo siguiente: Teniendo en cuenta el valor de 0.6 como punto de corte, las variables que menos aportan al EFA son "Desempleo_2021" y "PBI_2020". Por el contrario, los indicadores que más aporte ofrecen son "E2..Economic.Inequality", "Emisiones de CO2", "Paz" y "Catastrofe". 
 
@@ -155,7 +155,7 @@ resfa <- fa(theDataNorm,
             fm="minres")
 print(resfa$loadings)
 ```
-Vemos que, en el proceso de redimensionar 8 variables a 2, se ha logrado recuperar el 43% de información.
+Vemos que, en el proceso de redimensionar 8 variables a 2, se ha logrado recuperar casi el 44% de información.
 
 Sobre las variables independientes, tenemos lo siguiente: Tanto "Criminalidad" como "P.Corrupción_2021", "E2..Economic.Inequality", "EmisionesCO2", "Paz" y "Catastrofe" aparecen en ambos factores. Sin embargo, estableceremos 0.5 como un punto de corte para determinar a qué factor corresponderá cada componente. En los casos de "Desempleo_2021" y de "PBI_2020", encontramos que ambos indicadores solamente pertenecen a un factor: el segundo y el primero, respectivamente. 
 
@@ -167,7 +167,7 @@ print(resfa$loadings,cutoff = 0.5)
 fa.diagram(resfa,main = "Resultados del EFA")
 ```
 Luego de elaborar el corte, damos cuenta de que "Desempleo_2021", "PBI_2020" y "Catastrofe" ya no se encuentran en ningún factor. Esto debido a que las tres variables contaban con valores inferiores a 0.5. 
-En cuanto a las demás variables, todas han sido ubicadas en un solo factor con excepción de "Paz", pues los dos valores que presenta se encuentran por encima del punto de corte.No obstante, en el siguiente grafico, la variable mencionada fue seleccionada para el segundo factor.
+En cuanto a las demás variables, todas han sido ubicadas en un solo factor con excepción de "Paz", pues los dos valores que presenta se encuentran por encima del punto de corte. No obstante, en el siguiente grafico, la variable mencionada fue seleccionada para el segundo factor.
 
 A continuación, se realizan las pruebas de comunalidad y de complejidad. 
 
