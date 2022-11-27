@@ -157,7 +157,7 @@ print(resfa$loadings)
 ```
 Vemos que, en el proceso de redimensionar 8 variables a 2, se ha logrado recuperar casi el 44% de información.
 
-Sobre las variables independientes, tenemos lo siguiente: Tanto "Criminalidad" como "P.Corrupción_2021", "E2..Economic.Inequality", "EmisionesCO2", "Paz" y "Catastrofe" aparecen en ambos factores. Sin embargo, estableceremos 0.5 como un punto de corte para determinar a qué factor corresponderá cada componente. En los casos de "Desempleo_2021" y de "PBI_2020", encontramos que ambos indicadores solamente pertenecen a un factor: el segundo y el primero, respectivamente. 
+Sobre las variables independientes, tenemos lo siguiente: Tanto "Criminalidad" como "P.Corrupción_2021", "E2..Economic.Inequality", "Paz" y "Catastrofe" aparecen en ambos factores. Sin embargo, estableceremos 0.5 como un punto de corte para determinar a qué factor corresponderá cada componente. En los casos de desempleo, pbi y emisiones de co2, encerramos que los tres indicadores solamente pertenecen a un factor: el segundo y el primero respectivamente. 
 
 ```{r echo=FALSE, include=FALSE}
 print(resfa$loadings,cutoff = 0.5)
