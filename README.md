@@ -64,14 +64,13 @@ Contenido de repositorio:
 2. LimpiezaData Final.rmd: Rmd cm la limpieza para la base de datos 
 3. Migración2022.csv: Base con el índice de migración en el  año 2022 por cada 10 000 habitantes
 4. catastrofe.xlsx: Base con el índice de riesgo ecológico por país 
-5. Criminalidad1.xlsx: Esto es de Luis 
+5. Criminalidad1.xlsx: Base con el indicador de criminalidad/inseguridad en los países
 6. Legitimidad estatal 2021(1).xlsx: Base con el indicador de legitimidad estatal por países (descartada de la base de datos final)
 7. CreciPIB.xlsx: Base con el crecimiento de PIB de los países 
 8. Desempleo.xlsx: Base con el indicador de desempleo en los países 
 9. IndicePercepCorru.xlsx: Base con el indicador de la percepción de la corrupción de la población en los países 
 10. desieco.xlsx: Base con el índice de desigualdad económica al interior de los países 
 11. emisiones co2.xls: Base con el indicador de contaminación por emisiones de dióxido de carbono en los países
-12. criminalidad1.xlsx: Base con el indicador de criminalidad/inseguridad en los países
 
 
 
