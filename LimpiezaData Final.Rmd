@@ -237,14 +237,14 @@ dataFINAL = select(dataFINAL, ISO, pais, Migracion_2022, Criminalidad, PCorrupci
 
 
 ```{r}
-dataFINAL = dataFINAL[-c(28,110),]
+dataFINAL = dataFINAL[-c(28,111),]
 dataFINAL = dataFINAL[complete.cases(dataFINAL[,-1,-2]),]
 ```
 
 
 ```{r}
 library(rio)
-export(dataFINAL,"DataFINAL5.csv")
+export(dataFINAL,"DataFINAL6.csv")
 ```
 
 

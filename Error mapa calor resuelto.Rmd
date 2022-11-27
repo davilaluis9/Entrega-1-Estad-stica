@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(rio)
-DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL4.csv")
+DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL5.csv")
 ```
 
 
@@ -19,15 +19,8 @@ DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/mai
 ```{r}
 library(sf)
 mapDIS=sf::read_sf("world-administrative-boundaries.shp")
-head(mapDIS)
 ```
 
-
-```{r}
-DataFINAL$cortes = ifelse(DataFINAL$Migracion_2022 <= -1,1,
-                         ifelse(DataFINAL$Migracion_2022>-1 & DataFINAL$Migracion_2022<= 0,2,
-                                ifelse(DataFINAL$Migracion_2022>0,3,0)))
-```
 
 
 
@@ -42,7 +35,7 @@ DataFINAL$cortes = ifelse(DataFINAL$Migracion_2022 <= -6,1,
 
 ```{r}
 colnames(DataFINAL)[1] = "iso3"
-mapacalor= merge(mapDIS, DataFINAL, by = "iso3", all.x = T) #Siempre primero el shapefile y se quedan con los casos completos de los polígonos. Aquí estaba el error.
+mapacalor= merge(mapDIS, DataFINAL, by = "iso3", all.x = T) 
 ```
 
 

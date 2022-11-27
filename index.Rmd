@@ -2,10 +2,8 @@
 title: "Estadística para el análisis político II"
 author: "Luis Dávila, Athina Perez, Alexandra Porras"
 date: '2022-10-07'
-output:
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: github
+output: 
+  rmdformats::readthedown
 ---
 
 ```{r,echo=FALSE, out.width="30%",fig.align="center"}
@@ -14,21 +12,23 @@ knitr::include_graphics("logoPUCP (1).png")
 
 
 
+En el siguiente análisis a presentar, se trata de analizar las razones que pueden haber influenciado la migración global para el año 2022. Esto permitiría entender qué posibles factores dentro de los países son afectan de forma negativa la percepción de un país en particular y ello resulta en una migración de sus ciudadanos. Para lograr este objetivo, se han realizado regresiones lineales para determinar cómo diferentes modelos con diferentes factores funcionan. Asimismo, se presentan técnicas para explicar las dimensiones o variables a utilizar y poder determinar cuáles de ellas resultan parecidas entre sí y afecten similarmente a la variable latente. Finalmente, se presenta un análisis de conglomerados para visualizar la similitud entre casos, o países presentados, y que puedan poseer características similares. Ello permite entender qué países son los que pueden poseer políticas o niveles de calidad de vida parecidas y en la forma en la que puedan afectar a la población.
 
-
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE}
+library(sf)
 library(rio)
 library(knitr)
 library(modelsummary)
-DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL5.csv")
+library(ggplot2)
 library(magrittr)
+DataFINAL = import("https://github.com/davilaluis9/Entrega-1-Estad-stica/raw/main/DataFINAL6.csv")
 DataFINAL%>%
     rmarkdown::paged_table()
 ```
 
+### 1. Regresiones
 
 ```{r echo=FALSE}
-
 modelo_LUIS_D<-lm(data=DataFINAL,Migracion_2022~EmisionesCO2+ `E2: Economic Inequality` + Criminalidad)
 model1=list('Regresion 1' = modelo_LUIS_D)
 modelsummary(model1, title = "Primera regresion",
@@ -36,7 +36,7 @@ modelsummary(model1, title = "Primera regresion",
              output = "kableExtra")
 ```
 
-Viendo los resultados, las variables analizadas no resultan significativas. En realidad, el modelo en sí no puede explicar la dependiente en este caso. Viendo el R ajustad, nos damos cuenta que este modelo solo explica un 0.05% del caso analizado. Todas las variables en sí están bastante lejanas de poder explicar algo en el modelo. Mientras más contaminación por CO2, más migración de la población. Mientras más criminalidad, más migración. En el caso de la desigualdad económica, se encuentra que existe una relación inversamente proporcional: mientras más desigualdad, menos migración. 
+Viendo los resultados, las variables analizadas no resultan significativas. En realidad, el modelo en sí no puede explicar la dependiente en este caso. Viendo el R ajustado, nos damos cuenta que este modelo solo explica un 0.07% del caso analizado. Todas las variables en sí están bastante lejanas de poder explicar algo en el modelo. Mientras más contaminación por CO2, más migración de la población. Mientras más criminalidad, más migración. En el caso de la desigualdad económica, se encuentra que existe una relación inversamente proporcional: mientras más desigualdad, menos migración. 
 
 
 ```{r echo=FALSE}
@@ -46,7 +46,7 @@ modelsummary(model2, title = "Segunda regresion",
              stars = TRUE,
              output = "kableExtra")
 ```
-En el caso de esta segunda regresión, al observar el R cuadrado ajustado, se determina lo siguiente: El R cuadrado es positivo y de 0.023. Por lo tanto, el modelo puede explicar la variabilidad de la migración en 2.30%.  De acuerdo a los coeficientes, tenemos lo siguiente: Existe una relación directamente proporcional entre el deterioro de la paz al interior del país y la migración. Por otro lado, "catastrofe" (riesgo ecológico), también presenta una relación inversa con migración. Aparantemente, mientras más riesgo ecológico existe, menor es la migración. 
+En el caso de esta segunda regresión, al observar el R cuadrado ajustado, se determina lo siguiente: El R cuadrado es positivo y de 0.057. Por lo tanto, el modelo puede explicar la variabilidad de la migración en 5.7%.  De acuerdo a los coeficientes, tenemos lo siguiente: Existe una relación directamente proporcional entre el deterioro de la paz al interior del país y la migración. Por otro lado, "catastrofe" (riesgo ecológico), también presenta una relación inversa con migración. Aparantemente, mientras más riesgo ecológico existe, menor es la migración. 
 
 
 ```{r echo=FALSE}
@@ -65,17 +65,163 @@ modelsummary(model4, title = "Regresion total",
              stars = TRUE,
              output = "kableExtra")
 ```
-Formula de la regresion: 
+### 2. Fórmula de la regresion: 
 
-Migracion= 0.05857(PCorrupcion_2021) - 0.04369(Desempleo_2021) - 0.05965(PBI_2020) + 0.26047(E2: Economic Inequality) + 0.04215(Criminalidad) + 0.11838(Emisiones CO2) + 0.02477(Paz) - 0.41331(Catastrofe)
+- Migracion= 0.05857(PCorrupcion_2021) - 0.04369(Desempleo_2021) - 0.05965(PBI_2020) + 0.26047(E2: Economic Inequality) + 0.04215(Criminalidad) + 0.11838(Emisiones CO2) + 0.02477(Paz) - 0.41331(Catastrofe)
 
 Ya aplicando todas las variables, vemos que, si bien la variable corrupción ha perdido significancia a comparación del modelo anterior, continúa explicando la variable dependiente. Esta vez, al 0.05. Además, señalamos que la variable EmisionesCO2 es significativa al 0.1. En general, este modelo puede explicar un 11% de la hipótesis. Dicho valor es el mismo que se obtenía al utilizar la corrupción, el desempleo y el PBI. 
 En conclusión, este modelo final, que acopla toda las variables, junto al tercer modelo, explican de mejor manera la hipótesis a comparación de los dos primeros.
 
-```{r echo= FALSE}
+
+```{r echo= FALSE, message=FALSE}
 library(stargazer)
 library(jtools)
-model5=stargazer(model1,model2,model3,model4,type ="text")
+model5=stargazer(model1,model2,model3,model4,type ="text", intercept.bottom = FALSE, single.row = F,no.space = F, out.header = TRUE, out="test.html")
 ```
+
+
+### 3. Análisis factorial exploratorio
+
+```{r include=FALSE}
+dontselect=c("ISO","pais", "Migracion_2022")
+select=setdiff(names(DataFINAL),dontselect) 
+theData=DataFINAL[,select]
+```
+
+```{r include=FALSE}
+theData=lapply(theData, as.numeric)
+```
+
+```{r include=FALSE}
+str(theData)
+```
+Elaboramos una matriz de correlación con las variables: 
+
+```{r echo=FALSE}
+library(polycor)
+corMatrix=polycor::hetcor(theData)$correlations
+library(ggcorrplot)
+ggcorrplot(corMatrix)
+```
+
+Observamos que los cuadros se pintan completamente de rojo en donde las variables coinciden, pues, al representar lo mismo, se encuentran perfectamente correlacionadas. Esta es la entrada para la realización del EFA. 
+
+Ahora, verificamos si los datos nos permitirán factorizar: 
+
+```{r echo=FALSE, message=FALSE}
+library(psych)
+psych::KMO(corMatrix) 
+```
+Vemos que el Overall MSA es de 0.78. Al ser un valor superior a 0.6, podemos afirmar que aporta al análisis. 
+
+Por su parte, sobre cada variable independiente, observamos lo siguiente: Teniendo en cuenta el valor de 0.6 como punto de corte, las variables que menos aportan al EFA son "Desempleo_2021" y "PBI_2020". Por el contrario, los indicadores que más aporte ofrecen son "E2..Economic.Inequality", "Emisiones de CO2", "Paz" y "Catastrofe". 
+
+
+Como parte del proceso, elaboramos las pruebas de matriz de identidad y matriz de singularidad: 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+cortest.bartlett(corMatrix,n=nrow(theData))$p.value>0.05
+```
+
+
+```{r echo=FALSE}
+library(matrixcalc)
+is.singular.matrix(corMatrix)
+```
+Como ambas resultan falsas, podemos proceder a aplicar el código para la sugerencia del número de factores. 
+
+Es relevante señalar que, pese a que la normalización de las variables no es exigida para la elaboración del EFA, en el presente trabajo, decidimos optar por ella. Esto obedece a un motivo específico: Sin realizarla, el número de factores que se nos sugiere para redimensionar la base de datos es 1. Dicha alternativa no aporta a nuestra investigación. Con las variables normalizadas, observamos que se nos sugiere dividir las variables en dos factores. 
+
+```{r include=FALSE}
+theData = as.data.frame(theData)
+theDataNorm=scale(theData)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+fa.parallel(theDataNorm, fa = 'fa',correct = T,plot = F)
+```
+
+```{r echo=FALSE}
+library(GPArotation)
+resfa <- fa(theDataNorm,
+            nfactors = 2,
+            cor = 'mixed',
+            rotate = "varimax",
+            fm="minres")
+print(resfa$loadings)
+```
+Vemos que, en el proceso de redimensionar 8 variables a 2, se ha logrado recuperar el 43% de información.
+
+Sobre las variables independientes, tenemos lo siguiente: Tanto "Criminalidad" como "P.Corrupción_2021", "E2..Economic.Inequality", "EmisionesCO2", "Paz" y "Catastrofe" aparecen en ambos factores. Sin embargo, estableceremos 0.5 como un punto de corte para determinar a qué factor corresponderá cada componente. En los casos de "Desempleo_2021" y de "PBI_2020", encontramos que ambos indicadores solamente pertenecen a un factor: el segundo y el primero, respectivamente. 
+
+```{r echo=FALSE}
+print(resfa$loadings,cutoff = 0.5)
+```
+Luego de elaborar el corte, damos cuenta de que "Desempleo_2021", "PBI_2020" y "Catastrofe" ya no se encuentran en ningún factor. Esto debido a que las tres variables contaban con valores inferiores a 0.5. 
+En cuanto a las demás variables, todas han sido ubicadas en un solo factor con excepción de "Paz", pues los dos valores que presenta se encuentran por encima del punto de corte. 
+
+```{r echo=FALSE}
+fa.diagram(resfa,main = "Resultados del EFA")
+```
+
+A continuación, realizamos las pruebas de comunalidad y de complejidad. 
+```{r echo=FALSE}
+sort(resfa$communality)
+```
+En esta primera, observamos que las variables independientes que más han contribuído a los factores son "Criminalidad", "Paz", "E2..Economic.Inequality" y "PCorrupción_2021". 
+
+```{r echo=FALSE}
+sort(resfa$complexity)
+```
+En cuanto a la complejidad de las variables, es relevante señalar que "Paz", así como contribuye a los factores, también presenta tal complejidad que se acerca a más de uno. Otros componentes que también demuestran complejidad son "Catastrofe" y, en menor medida, "Criminalidad". 
+
+
+A continuación, observamos los valores proyectados de ambos factores. 
+```{r echo=FALSE}
+library(magrittr)
+as.data.frame(resfa$scores)%>%head()
+```
+
+
+
+
+
+
+
+```{r echo= FALSE}
+mapDIS=sf::read_sf("world-administrative-boundaries.shp")
+DataFINAL$cortes = ifelse(DataFINAL$Migracion_2022 <= -6,1,
+                         ifelse(DataFINAL$Migracion_2022>-6 & DataFINAL$Migracion_2022<= 0,2,
+                                ifelse(DataFINAL$Migracion_2022>0 & DataFINAL$Migracion_2022<= 6,3,
+                                ifelse(DataFINAL$Migracion_2022>6,4,0))))
+                                       
+                                       
+colnames(DataFINAL)[1] = "iso3"
+mapacalor= merge(mapDIS, DataFINAL, by = "iso3", all.x = T)
+```
+
+
+
+
+```{r echo=FALSE,message=FALSE,warning=FALSE,eval=TRUE,fig.show='hold',fig.width=9.5,fig.height=5.55, fig.align="center"}
+mapaleyendaL= ggplot(mapacalor)+ geom_sf() + theme_light()
+
+mapaleyL=  mapaleyendaL + geom_sf(data=mapacalor,
+              aes(fill=cortes), color = "black")
+
+
+
+mapa3= mapaleyL +coord_sf() + scale_fill_gradient(low = "firebrick",  high = "white", breaks=seq(from=-11, to=14, by=.5)) + theme_void() + 
+  
+theme(axis.title = element_blank(), axis.text = element_blank(), legend.position = c(1.1,0.55)) + labs(fill=" ") + theme(legend.text = element_text(size = 13)) +
+  
+labs(title = "Migración 2022", subtitle = "Mapa de calor",caption = "Los datos perdidos son de color gris") +
+  
+theme(
+plot.title = element_text(color="black", size=20, face="bold"),
+plot.caption = element_text(color = "black", size=10))
+mapa3
+```
+
 
 
