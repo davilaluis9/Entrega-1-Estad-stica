@@ -1,5 +1,5 @@
 ---
-title: "Estadística para el análisis político II"
+title: "Estadística para el análisis político II - Migración a nivel mundial"
 author: "Luis Dávila, Athina Perez, Alexandra Porras"
 date: '2022-10-07'
 output: 
