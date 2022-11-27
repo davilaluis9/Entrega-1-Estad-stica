@@ -16,6 +16,8 @@ Como resultado, en el presente reporte, se busca analizar las razones que pueden
 
 Finalmente, a partir del análisis, se busca dar mayores luces respecto a esta problemática para, a partir de las variables examinadas, pensar qué estrategias de acción podrían implementar los países, desde su propia particularidad nacional, para evitar la pérdida de ciudadanos y posible capital humano.
 
+A continuacion se muestra un resumen de las variables a utilizar y casos del estudio:
+
 ```{r echo=FALSE, message=FALSE}
 library(sf)
 library(factoextra)
@@ -70,7 +72,7 @@ modelsummary(model4, title = "Regresion total",
              stars = TRUE,
              output = "kableExtra")
 ```
-### 2. Fórmula de la regresion: 
+### 2. Fórmula de la regresión: 
 
 - Migracion= 0.05857(PCorrupcion_2021) - 0.04369(Desempleo_2021) - 0.05965(PBI_2020) + 0.26047(E2: Economic Inequality) + 0.04215(Criminalidad) + 0.11838(Emisiones CO2) + 0.02477(Paz) - 0.41331(Catastrofe)
 
