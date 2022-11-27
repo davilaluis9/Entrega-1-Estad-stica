@@ -62,9 +62,9 @@ Variables independientes:
 
 
 Contenido de repositorio:
-     * DataFinal6.csv: Base de datos con los casos completos
-     * LimpiezaData Final.rmd: Rmd cm la limpieza para la base de datos 
-     * Migración2022.csv: Base con el índice de migración en el  año 2022 por cada 10 000 habitantes
-     * catastrofe.xlsx: Base con el índice de riesgo ecológico por país 
-     * Criminalidad1.xlsx: Esto es de Luis 
-     * Legitimidad estatal 2021(1).xlsx: Base con el indicador de legitimidad estatal por países (descartada de la base de datos final)
+1. DataFinal6.csv: Base de datos con los casos completos
+2. LimpiezaData Final.rmd: Rmd cm la limpieza para la base de datos 
+3. Migración2022.csv: Base con el índice de migración en el  año 2022 por cada 10 000 habitantes
+4. catastrofe.xlsx: Base con el índice de riesgo ecológico por país 
+5. Criminalidad1.xlsx: Esto es de Luis 
+6. Legitimidad estatal 2021(1).xlsx: Base con el indicador de legitimidad estatal por países (descartada de la base de datos final)
